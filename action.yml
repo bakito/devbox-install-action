@@ -113,7 +113,7 @@ runs:
         key: ${{ runner.os }}-${{ runner.arch }}-devbox-cli-${{ env.latest_version }}
 
     - name: Workaround nix store cache permission issue
-      if: inputs.enable-cache == 'true'
+      if: inputs.enable-cache == 'true' || inputs.enable-cache == 'restore'
       shell: bash
       run: |
         if [ "$RUNNER_OS" == "macOS" ]; then
