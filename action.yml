@@ -16,7 +16,7 @@ inputs:
     default: 'false'
   devbox-version: # version of the devbox cli
     description: 'Specify devbox CLI version you want to pin to. Default to latest'
-    default: 'false'
+    default: ''
   sha256-checksum: # the expected SHA256 checksum of the devbox binary.
     description: 'Specify an explicit checksum for the devbox binary. For extra security on top of the existing checks in the devbox launch script'
   disable-nix-access-token: # 'true' or 'false'
