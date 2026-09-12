@@ -9,14 +9,14 @@ inputs:
     description: 'Project path to devbox.json. Default to the root directory of the repository.'
     default: '.'
   enable-cache: # 'true' or 'false'
-    description: 'Caching the entire Nix store in github based on your devbox.json'
+    description: 'Caching the entire Nix store in github based on your devbox.json (true/false/restore)'
     default: 'false'
   refresh-cli: # 'true' or 'false'
     description: 'Specify whether the CLI should be redownloaded'
     default: 'false'
   devbox-version: # version of the devbox cli
     description: 'Specify devbox CLI version you want to pin to. Default to latest'
-    default: ''
+    default: 'false'
   sha256-checksum: # the expected SHA256 checksum of the devbox binary.
     description: 'Specify an explicit checksum for the devbox binary. For extra security on top of the existing checks in the devbox launch script'
   disable-nix-access-token: # 'true' or 'false'
@@ -196,7 +196,7 @@ runs:
 
     - name: Mount nix store cache
       id: cache-devbox-nix-store
-      if: inputs.enable-cache == 'true'
+      if: inputs.enable-cache == 'true' || inputs.enable-cache == 'restore'
       uses: actions/cache/restore@cdf6c1fa76f9f475f3d7449005a359c84ca0f306  # v5
       with:
         path: |
